@@ -1,5 +1,5 @@
 import { Router} from "express";
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -10,7 +10,6 @@ const prisma = new PrismaClient();
 // create user
 router.post('/', async (req, res) => {
     const { email, name, username } = req.body;
-    console.log(email, name, username);
 
     try {
         const result = await prisma.user.create({
@@ -38,7 +37,10 @@ router.get('/',async (req, res) => {
 //get one user
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
-    const user = await prisma.user.findUnique({where: {id: Number(id)}})
+    const user = await prisma.user.findUnique({where: {id: Number(id)}});
+    if (!user) {
+        return res.status(404).json({error: "User not found!"});
+        }
     res.json(user);
 });
 
