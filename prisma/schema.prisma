@@ -16,13 +16,29 @@ model User {
   updatedAt DateTime @updatedAt
 
   email String @unique
-  name String
-  username String @unique
+  name String?
+  username String? @unique
   image String?
   bio String?
   isVerified Boolean @default(false)
 
-  tweets Tweet[]
+  tweets Tweet[] // one to many relationship
+  tokens Token[] // one to many relationship
+}
+
+model Token {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  type String // denote the type of token (we have 2 types: emailToken or API Token)
+  emailToken String? @unique
+
+  vaild Boolean @default(true)
+  expiration DateTime // based on createdAt
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Tweet {
