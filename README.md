@@ -11,4 +11,8 @@ To start the backend server, navigate to the root folder and run the command bel
 ```
 npx ts-node src/index.ts
 ```  
-
+To check the prisma (sqlite) database, navigate to the root folder and run the command below:  
+```
+npx prisma studio
+```  
+You can use the VScode extension Thunder Client to test this RESTful API.
