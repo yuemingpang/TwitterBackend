@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 const EAMIL_TOKEN_EXP_MIN = 10;
 const JWT_TOKEN_EXP_HOURS = 24;
-const JWT_SECRET = "TOP SECRET";
+const JWT_SECRET = process.env.JWT_SECRET || " ";
 
 const router = Router();
 const prisma = new PrismaClient();
