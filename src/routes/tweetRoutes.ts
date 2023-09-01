@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
                 image,
                 userId: user.id,
             },
+            include: {user: true},
         });
         res.json(result);
 
