@@ -8,6 +8,10 @@ npm install prisma --save-dev
 npm install jsonwebtoken @types/jsonwebtoken --save-dev
 npm install @aws-sdk/client-ses
 ```  
+Or you can simply run the follwing command to install all the dependencies:  
+```
+npm i
+```  
 To start the backend server, navigate to the root folder and run the command below:  
 ```
 npx ts-node src/index.ts
