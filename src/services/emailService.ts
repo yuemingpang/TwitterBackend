@@ -8,7 +8,7 @@ function createCommand(toAddress: string, fromAddress: string, message: string) 
         Destination: {
             ToAddresses: [toAddress]
         },
-        Source: fromAddress,
+        Source: fromAddress, // the verified address on AWS SES
         Message: {
             Subject: {Charset: 'UTF-8', Data: "Your one-time token"},
             Body: {Text:{Charset: 'UTF-8', Data: message}},
@@ -19,7 +19,8 @@ function createCommand(toAddress: string, fromAddress: string, message: string) 
 export async function sendEmailToken(email: string, token: string) {
 
     const message = `Your one-time token is : ${token}`;
-    const command = createCommand(email, "pymdebabe@gmail.com", message);
+    // my verified address on AWS SES
+    const command = createCommand(email, "pymdebaby@gmail.com", message);
     try {
         return await ses.send(command);
     } catch (e) {
